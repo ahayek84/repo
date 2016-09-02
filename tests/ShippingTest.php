@@ -5,6 +5,7 @@ class product {
 
     private $name;
     private $price;
+    private $qnt;
 
     /**
      * @return mixed
@@ -53,7 +54,53 @@ class product {
     {
         $this->qnt = $qnt;
     }
-    private $qnt;
+
+
+
+}
+
+class CartItem {
+    private $Cqnt;
+    Private $product;
+
+    /**
+     * CartItem constructor.
+     * @param $product
+     */
+    public function __construct($product,$pqnt)
+    {
+        $this->setCqnt(0);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCqnt()
+    {
+        return $this->Cqnt;
+    }
+
+    /**
+     * @param mixed $Cqnt
+     */
+    public function setCqnt($Cqnt)
+    {
+        $this->Cqnt = $Cqnt;
+    }
+
+    public function addProduct($product,$pqnt)
+    {
+        $this->product = $product;
+        $vpqnt  = $product->getQnt();
+        $cqnt = $this->getCqnt();
+        $this->setCqnt($pqnt+$cqnt);
+        $product->setQnt($vpqnt-$pqnt);
+    }
+
+    public function viewProduct()
+    {
+       return $this->product;
+    }
 
 
 }
